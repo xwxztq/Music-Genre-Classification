@@ -16,11 +16,12 @@ from config import sliceSize
 from imageFilesTools import getImageData
 from songToData import createSlicesFromAudio, mp3topng
 def getmax(rt):
-    ans = 0
-    for i in range(len(rt)):
+	ans = 0
+	for i in range(len(rt)):
 		if (rt[ans] < rt[i]):
 			ans = i
-    return ans
+	return ans
+
 def calculate(filename):
 	mp3topng(filename)
 	data = []
@@ -38,10 +39,12 @@ def calculate(filename):
 		#print("max={}".format(tt))
 		add[tt] += 1
 	print(add)
-	return getmax(add) 
-model = createModel(10, sliceSize)
-model.load('musicDNN_1.0.tflearn')
-calculate("tt.mp3")
+	return getmax(add)
+
+if __name__ == '__main__':
+	model = createModel(10, sliceSize)
+	model.load('musicDNN_1.0.tflearn')
+	calculate("tt.mp3")
 
 
 
