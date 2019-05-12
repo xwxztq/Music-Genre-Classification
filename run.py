@@ -6,15 +6,15 @@ import sys
 import numpy as np
 
 from model import createModel
-from datasetTools import getDataset
-from config import slicesPath
-from config import batchSize
-from config import filesPerGenre
-from config import nbEpoch
-from config import validationRatio, testRatio
-from config import sliceSize
-from imageFilesTools import getImageData
-from songToData import createSlicesFromAudio, mp3topng
+from .datasetTools import getDataset
+from .config import slicesPath
+from .config import batchSize
+from .config import filesPerGenre
+from .config import nbEpoch
+from .config import validationRatio, testRatio
+from .config import sliceSize
+from .imageFilesTools import getImageData
+from .songToData import createSlicesFromAudio, mp3topng
 def getmax(rt):
 	ans = 0
 	for i in range(len(rt)):
@@ -23,6 +23,8 @@ def getmax(rt):
 	return ans
 
 def calculate(filename):
+	model = createModel(10, sliceSize)
+	model.load('musicDNN_1.0.tflearn')
 	mp3topng(filename)
 	data = []
 	ct = 0
@@ -42,8 +44,6 @@ def calculate(filename):
 	return getmax(add)
 
 if __name__ == '__main__':
-	model = createModel(10, sliceSize)
-	model.load('musicDNN_1.0.tflearn')
 	calculate("tt.mp3")
 
 
