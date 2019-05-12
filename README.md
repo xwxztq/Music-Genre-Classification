@@ -34,7 +34,7 @@ libid3tag(由于sox不支持MP3格式)
 -> https://github.com/despoisj/DeepAudioClassification
 ## Predict New File
 1.将 模型文件(3个,index,meta,data)放入 / 下
-2.执行python try.py ，输出当前路径下tt.mp3的概率
+2.执行python run.py ，输出当前路径下tt.mp3的概率
 
 
 ## tips
