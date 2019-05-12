@@ -10,7 +10,7 @@ def isMono(filename):
 
 def getGenre(filename):
 	audiofile = eyed3.load(filename)
-        print(audiofile.tag.genre)
+        print((audiofile.tag.genre))
 	#No genre
 	if not audiofile.tag.genre:
 		return None

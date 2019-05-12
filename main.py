@@ -23,10 +23,10 @@ args = parser.parse_args()
 
 print("--------------------------")
 print("| ** Config ** ")
-print("| Validation ratio: {}".format(validationRatio))
-print("| Test ratio: {}".format(testRatio))
-print("| Slices per genre: {}".format(filesPerGenre))
-print("| Slice size: {}".format(sliceSize))
+print(("| Validation ratio: {}".format(validationRatio)))
+print(("| Test ratio: {}".format(testRatio)))
+print(("| Slices per genre: {}".format(filesPerGenre)))
+print(("| Slice size: {}".format(sliceSize)))
 print("--------------------------")
 
 if "slice" in args.mode:
@@ -93,11 +93,11 @@ if "test" in args.mode:
 			corr += 1
 			a[tot] += 1
 		#print("{}:ans={},tot={}".format(i, ans, tot))
-	print("corr={}").format(corr)
+	print(("corr={}").format(corr))
 	for i in range(10):
-		print("a[{}]={},{}").format(i, a[i],1.0*a[i]/110)
+		print(("a[{}]={},{}").format(i, a[i],1.0*a[i]/110))
 	testAccuracy = model.evaluate(test_X, test_y)[0]
-	print("[+] Test accuracy: {} ".format(testAccuracy))
+	print(("[+] Test accuracy: {} ".format(testAccuracy)))
 
 
 

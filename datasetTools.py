@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+
+
+
 
 import os
 from PIL import Image
@@ -96,7 +96,7 @@ def createDatasetFromSlices(nbPerGenre, genres, sliceSize, validationRatio, test
     shuffle(data)
 
     #Extract X and y
-    X,y = zip(*data)
+    X,y = list(zip(*data))
 
     #Split data
     validationNb = int(len(X)*validationRatio)

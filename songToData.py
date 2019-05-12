@@ -30,7 +30,7 @@ def createSpectrogram(filename,newFilename):
 	p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, cwd=currentPath)
 	output, errors = p.communicate()
 	if errors:
-		print errors
+		print(errors)
 	#Create spectrogram
 	filename.replace(".mp3","")
 	command = "sox '/tmp/{}.mp3' -n spectrogram -Y 200 -X {} -m -r -o '{}.png'".format(newFilename,pixelPerSecond,spectrogramsPath+newFilename)
@@ -38,7 +38,7 @@ def createSpectrogram(filename,newFilename):
 	output, errors = p.communicate()
 	print("shit")
 	if errors:
-		print errors
+		print(errors)
 
 	#Remove tmp mono track
         
@@ -52,7 +52,7 @@ def mp2png(filename,newFilename):
 	p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, cwd=currentPath)
 	output, errors = p.communicate()
 	if errors:
-		print errors
+		print(errors)
 
 	#Create spectrogram
 	filename.replace(".mp3","")
@@ -60,7 +60,7 @@ def mp2png(filename,newFilename):
 	p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, cwd=currentPath)
 	output, errors = p.communicate()
 	if errors:
-		print errors
+		print(errors)
 
 	#Remove tmp mono track
         
@@ -72,7 +72,7 @@ def createSpectrogramsFromAudio():
 	files = os.listdir(rawDataPath)
 	files = [file for file in files if file.endswith(".mp3")]
 	nbFiles = len(files)
-        print rawDataPath
+        print(rawDataPath)
 	#Create path if not existing
 	if not os.path.exists(os.path.dirname(spectrogramsPath)):
 		try:
@@ -80,10 +80,10 @@ def createSpectrogramsFromAudio():
 		except OSError as exc: # Guard against race condition
 			if exc.errno != errno.EEXIST:
 				raise
-        print spectrogramsPath
+        print(spectrogramsPath)
 	#Rename files according to genre
 	for index,filename in enumerate(files):
-		print "Creating spectrogram for file {}/{}...".format(index+1,nbFiles)
+		print("Creating spectrogram for file {}/{}...".format(index+1,nbFiles))
 		for i in range(len(filename)):
 			if (filename[i]=='_'):
 				fileGenre = filename[0:i]
@@ -96,14 +96,14 @@ def createSpectrogramsFromAudio():
 
 #Whole pipeline .mp3 -> .png slices
 def createSlicesFromAudio():
-	print "Creating spectrograms..."
+	print("Creating spectrograms...")
 	createSpectrogramsFromAudio()
-	print "Spectrograms created!"
-	print "Creating slices..."
+	print("Spectrograms created!")
+	print("Creating slices...")
 	createSlicesFromSpectrograms(desiredSize)
         print("DesiredSize");
         print(desiredSize);
-	print "Slices created!"
+	print("Slices created!")
 def mp3topng(filename):
 	print("Start mp3 -> png!!")
 	mp2png(filename, "new")
