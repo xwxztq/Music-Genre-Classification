@@ -72,7 +72,7 @@ def createSpectrogramsFromAudio():
 	files = os.listdir(rawDataPath)
 	files = [file for file in files if file.endswith(".mp3")]
 	nbFiles = len(files)
-        print(rawDataPath)
+	print(rawDataPath)
 	#Create path if not existing
 	if not os.path.exists(os.path.dirname(spectrogramsPath)):
 		try:
@@ -80,7 +80,7 @@ def createSpectrogramsFromAudio():
 		except OSError as exc: # Guard against race condition
 			if exc.errno != errno.EEXIST:
 				raise
-        print(spectrogramsPath)
+	print(spectrogramsPath)
 	#Rename files according to genre
 	for index,filename in enumerate(files):
 		print("Creating spectrogram for file {}/{}...".format(index+1,nbFiles))
@@ -101,8 +101,8 @@ def createSlicesFromAudio():
 	print("Spectrograms created!")
 	print("Creating slices...")
 	createSlicesFromSpectrograms(desiredSize)
-        print("DesiredSize");
-        print(desiredSize);
+	print("DesiredSize")
+	print(desiredSize)
 	print("Slices created!")
 def mp3topng(filename):
 	print("Start mp3 -> png!!")
