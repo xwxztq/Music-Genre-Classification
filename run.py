@@ -15,6 +15,7 @@ from .config import validationRatio, testRatio
 from .config import sliceSize
 from .imageFilesTools import getImageData
 from .songToData import createSlicesFromAudio, mp3topng
+from glob import glob
 def getmax(rt):
 	ans = 0
 	for i in range(len(rt)):
@@ -23,8 +24,14 @@ def getmax(rt):
 	return ans
 
 def calculate(filename):
+
+	path = os.path.join(os.getcwd(), 'Generate/*')
+	print(path)
+	files = glob(path)
+	for file in files:
+		os.remove(file)
 	model = createModel(10, sliceSize)
-	model.load('musicDNN_1.0.tflearn')
+	model.load('model/musicDNN_4.0_60epoch.tflearn')
 	mp3topng(filename)
 	data = []
 	ct = 0
