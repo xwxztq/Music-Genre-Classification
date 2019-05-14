@@ -56,7 +56,8 @@ def sp2slice(filename, desiredSize):
 			os.makedirs(os.path.dirname(newPath))
 		except OSError as exc: # Guard against race condition
 			if exc.errno != errno.EEXIST:
-				raise
+				print("Hey guys")
+				raise Expection("exc.errno != errno.EEXIST")
 
 	#For each sample
 	for i in range(nbSamples):
