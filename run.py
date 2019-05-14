@@ -4,6 +4,7 @@ import string
 import os
 import sys
 import numpy as np
+import tensorflow as tf
 
 from model import createModel
 from .datasetTools import getDataset
@@ -24,7 +25,7 @@ def getmax(rt):
 	return ans
 
 def calculate(filename):
-
+	tf.reset_default_graph()
 	path = os.path.join(os.getcwd(), 'Generate/*')
 	print(path)
 	files = glob(path)

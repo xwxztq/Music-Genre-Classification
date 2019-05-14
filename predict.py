@@ -38,6 +38,7 @@ def calculate(filename):
 		os.remove(file)
 	model = createModel(10, sliceSize)
 	model.load('model/musicDNN_4.0_60epoch.tflearn')
+	print("this is the step before mp3topng")
 	mp3topng(filename)
 	data = []
 	ct = 0

@@ -22,18 +22,22 @@ eyed3.log.setLevel("ERROR")
 #Create spectrogram from mp3 files
 def createSpectrogram(filename,newFilename):
 	#Create temporary mono track if needed
-	print(newFilename)
+	print("This is the new filename",newFilename)
 	if isMono(rawDataPath+filename):
-		command = "cp '{}' '/tmp/{}.mp3'".format(rawDataPath+filename,newFilename)
+		command = "cp '{}' './tmp/{}.mp3'".format(rawDataPath+filename,newFilename)
 	else:
-		command = "sox '{}' '/tmp/{}.mp3' remix 1,2".format(rawDataPath+filename,newFilename)
+		command = "sox '{}' './tmp/{}.mp3' remix 1,2".format(rawDataPath+filename,newFilename)
+	
+	print("This is the first command",command)
 	p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, cwd=currentPath)
+	print("Open successfully")
 	output, errors = p.communicate()
 	if errors:
 		print(errors)
 	#Create spectrogram
 	filename.replace(".mp3","")
-	command = "sox '/tmp/{}.mp3' -n spectrogram -Y 200 -X {} -m -r -o '{}.png'".format(newFilename,pixelPerSecond,spectrogramsPath+newFilename)
+	command = "sox './tmp/{}.mp3' -n spectrogram -Y 200 -X {} -m -r -o '{}.png'".format(newFilename,pixelPerSecond,spectrogramsPath+newFilename)
+	print("This is command",command)
 	p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, cwd=currentPath)
 	output, errors = p.communicate()
 	print("shit")
@@ -42,29 +46,25 @@ def createSpectrogram(filename,newFilename):
 
 	#Remove tmp mono track
         
-	os.remove("/tmp/{}.mp3".format(newFilename))
+	#os.remove("./tmp/{}.mp3".format(newFilename))
 def mp2png(filename,newFilename):
 	#Create temporary mono track if needed
+	print('wewe')
 	if isMono(filename):
-		command = "cp '{}' '/tmp/{}.mp3'".format(filename,newFilename)
+		command = "cp '{}' './tmp/{}.mp3'".format(filename,newFilename)
 	else:
-		command = "sox '{}' '/tmp/{}.mp3' remix 1,2".format(filename,newFilename)
-	p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, cwd=currentPath)
-	output, errors = p.communicate()
-	if errors:
-		print(errors)
+		command = "sox '{}' './tmp/{}.mp3' remix 1,2".format(filename,newFilename)
+	os.system(command)
 
+	print('fefe')
 	#Create spectrogram
 	filename.replace(".mp3","")
-	command = "sox '/tmp/{}.mp3' -n spectrogram -Y 200 -X {} -m -r -o '{}.png'".format(newFilename,pixelPerSecond,newFilename)
-	p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, cwd=currentPath)
-	output, errors = p.communicate()
-	if errors:
-		print(errors)
-
+	command = "sox './tmp/{}.mp3' -n spectrogram -Y 200 -X {} -m -r -o '{}.png'".format(newFilename,pixelPerSecond,newFilename)
+	os.system(command)
+	
 	#Remove tmp mono track
         
-	os.remove("/tmp/{}.mp3".format(newFilename))
+	#os.remove("./tmp/{}.mp3".format(newFilename))
 
 #Creates .png whole spectrograms from mp3 files
 def createSpectrogramsFromAudio():
