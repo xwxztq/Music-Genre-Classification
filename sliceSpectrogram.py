@@ -41,10 +41,13 @@ def sliceSpectrogram(filename, desiredSize):
 		imgTmp.save(slicesPath+"{}/{}_{}.png".format(genre,filename[:-4],i))
 def sp2slice(filename, desiredSize):
 
+	print("Here is the start")
 	# Load the full spectrogram
 	img = Image.open(filename)
 
+	print("Here is the middle")
 	#Compute approximate number of 128x128 samples
+
 	width, height = img.size
 	nbSamples = int(width/desiredSize)
 	width - desiredSize
