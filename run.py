@@ -31,7 +31,9 @@ def calculate(filename):
 	for file in files:
 		os.remove(file)
 	model = createModel(10, sliceSize)
+	print("We will load model!")
 	model.load('model/musicDNN_4.0_60epoch.tflearn')
+	print("Model loaded!!")
 	mp3topng(filename)
 	data = []
 	ct = 0
